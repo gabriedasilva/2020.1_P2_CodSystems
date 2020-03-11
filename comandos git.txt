@@ -1,0 +1,4 @@
+git init: iniciar o repositorio
+git clone http://LINKDOREPOSITORIO: baixar a primeira vez os arquivos
+git pull: Atualizar os arquivos
+git push origin master : Efetua e da Uptade no repositorio
