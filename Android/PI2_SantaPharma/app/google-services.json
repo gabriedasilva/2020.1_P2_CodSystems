@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "451700607364",
+    "firebase_url": "https://pi-02-santafarma.firebaseio.com",
+    "project_id": "pi-02-santafarma",
+    "storage_bucket": "pi-02-santafarma.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451700607364:android:8c8c54e2b976ccf64c35d1",
+        "android_client_info": {
+          "package_name": "com.codsystems.santafarma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451700607364-hpgbncqa5hn21bru05cs72ger8h9ggkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codsystems.santafarma",
+            "certificate_hash": "ecaecda48fdea95895a21f3364fb239143960d2a"
+          }
+        },
+        {
+          "client_id": "451700607364-4vpafg4u17elubp59ri286a8cobvg06l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkbe2_qNd1nS4FgpmSEzuYxIlS1sAYc0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451700607364-4vpafg4u17elubp59ri286a8cobvg06l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
