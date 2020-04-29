@@ -1,0 +1,2 @@
+rootProject.name='Santa Farma'
+include ':app'
