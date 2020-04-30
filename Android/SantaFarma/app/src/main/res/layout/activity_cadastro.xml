@@ -5,28 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LoginActivity">
+    tools:context=".CadastroActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="236dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:contentDescription="@string/desc_logo"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout12"
+        android:id="@+id/imageView3"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:contentDescription="@string/profile_desc"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/usuario" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout12"
+        android:id="@+id/textInputLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,22 +28,40 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout11"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/digite_nome" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/digite_email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout11"
+        android:id="@+id/textInputLayout6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -57,22 +69,44 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/digite_senha"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText6"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/digite_senha"
-            android:inputType="numberPassword" />
+            android:layout_height="wrap_content"
+            android:hint="@string/digite_senha_confirmar"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -81,30 +115,11 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@color/colorPrimaryDark"
-        android:text="@string/botao_logar"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:onClick="abrirTelaCadastro"
-        android:text="@string/nao_tem_conta"
+        android:text="@string/botao_cadastro"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

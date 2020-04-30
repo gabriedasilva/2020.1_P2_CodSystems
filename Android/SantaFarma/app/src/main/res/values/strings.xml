@@ -2,7 +2,11 @@
     <string name="app_name">Santa Farma</string>
     <string name="digite_email">Digite seu e-mail</string>
     <string name="digite_senha">Digite sua senha</string>
-    <string name="botao_logar">Logar</string>
+    <string name="botao_logar">Entrar</string>
     <string name="nao_tem_conta">Não tem conta? Cadastre-se</string>
     <string name="desc_logo">Logo</string>
+    <string name="digite_nome">Digite o seu nome</string>
+    <string name="botao_cadastro">Cadastrar</string>
+    <string name="profile_desc">none</string>
+    <string name="digite_senha_confirmar">Confirme sua senha</string>
 </resources>
