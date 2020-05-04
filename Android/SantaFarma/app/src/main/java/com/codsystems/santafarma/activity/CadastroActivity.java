@@ -19,8 +19,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
-import java.util.concurrent.ExecutionException;
-
 public class CadastroActivity extends AppCompatActivity {
 
 private TextInputEditText c_nome,c_senha,c_senhaConf,c_email;
