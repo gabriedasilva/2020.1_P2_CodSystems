@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/digite_senha"
-            android:inputType="numberPassword" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

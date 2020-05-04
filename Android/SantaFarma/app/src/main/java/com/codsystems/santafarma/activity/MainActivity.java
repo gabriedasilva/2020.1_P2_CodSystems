@@ -1,8 +1,10 @@
-package com.codsystems.santafarma;
+package com.codsystems.santafarma.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.codsystems.santafarma.R;
 
 public class MainActivity extends AppCompatActivity {
 

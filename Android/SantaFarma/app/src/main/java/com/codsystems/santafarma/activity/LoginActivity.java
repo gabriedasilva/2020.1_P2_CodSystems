@@ -1,10 +1,12 @@
-package com.codsystems.santafarma;
+package com.codsystems.santafarma.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.codsystems.santafarma.R;
 
 public class LoginActivity extends AppCompatActivity {
 
