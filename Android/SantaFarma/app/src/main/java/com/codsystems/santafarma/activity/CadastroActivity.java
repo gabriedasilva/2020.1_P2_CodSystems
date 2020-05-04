@@ -45,7 +45,7 @@ private FirebaseAuth auth;
         if(!t_nome.isEmpty()){
             if(!t_email.isEmpty()){
                 if(!t_senha.isEmpty()){
-                    if(!t_senha.equals(t_senhaConf)){
+                    if(t_senha.equals(t_senhaConf)){
                         Usuario u = new Usuario();
                         u.setNome(t_nome);
                         u.setEmail(t_email);
