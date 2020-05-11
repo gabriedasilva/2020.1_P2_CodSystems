@@ -82,12 +82,12 @@ private TextInputEditText c_email,c_senha;
         }
 
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser user = auth.getCurrentUser();
-        if(user != null){
+        if (user != (null)) {
+
             abrirTelaPrincipal();
         }
     }

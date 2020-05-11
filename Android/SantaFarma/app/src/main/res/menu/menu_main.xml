@@ -2,16 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/notificar"
-        android:title="Notificações"
-        app:showAsAction="always"
+    <item
+        android:id="@+id/menu_notificar"
         android:icon="@drawable/ic_notificacoes"
-        />
+        android:title="Notificações"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/pesquisa"
-        android:title="Carrinho"
-        app:showAsAction="always"
-    android:icon="@drawable/ic_carrinho"
-    />
+    <item
+        android:id="@+id/menu_sair"
+        android:title="Sair"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_sobre"
+        android:title="Sobre" />
 
 </menu>
