@@ -9,4 +9,7 @@
     <string name="botao_cadastro">Cadastrar</string>
     <string name="profile_desc">none</string>
     <string name="digite_senha_confirmar">Confirme sua senha</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

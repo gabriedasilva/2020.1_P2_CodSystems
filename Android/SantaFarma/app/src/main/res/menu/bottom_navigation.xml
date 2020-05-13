@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ic_home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
     <item
-        android:id="@+id/ic_oferta"
+        android:id="@+id/nav_oferta"
         android:icon="@drawable/ic_oferta"
         android:title="Ofertas" />
 
     <item
-        android:id="@+id/ic_produtos"
+        android:id="@+id/nav_produtos"
         android:icon="@drawable/ic_produtos"
         android:title="Produtos" />
 
     <item
-        android:id="@+id/ic_carrinho"
+        android:id="@+id/nav_carrinho"
         android:icon="@drawable/ic_cesta"
         android:title="Carrinho" />
 
 
     <item
-        android:id="@+id/ic_perfil"
+        android:id="@+id/nav_perfil"
         android:icon="@drawable/ic_perfil"
         android:title="Perfil" />
 
