@@ -47,5 +47,11 @@ dependencies {
     //noinspection GradleCompatible
     implementation "com.android.support:design:28.0.0"
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    //Circle Image View
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //Mascara de Moeda (Dinheiro)
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+    //Mascara de Telefone Data e Cartão de Crd
+    implementation 'com.github.santalu:mask-edittext:1.1.1'
 
 }
