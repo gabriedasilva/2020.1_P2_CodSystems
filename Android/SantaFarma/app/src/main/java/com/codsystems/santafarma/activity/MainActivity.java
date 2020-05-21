@@ -1,7 +1,6 @@
 package com.codsystems.santafarma.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -9,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,11 +20,8 @@ import com.codsystems.santafarma.fragment.OfertaFragment;
 import com.codsystems.santafarma.fragment.PedidosFragment;
 import com.codsystems.santafarma.fragment.PerfilFragment;
 import com.codsystems.santafarma.fragment.ProdutosFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
