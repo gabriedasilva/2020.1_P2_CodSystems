@@ -30,8 +30,7 @@
         app:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -109,11 +108,14 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
@@ -122,7 +124,7 @@
             android:layout_height="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/medicines"
-            app:layout_column="0"
+            app:layout_column="4"
             app:layout_row="0" />
 
         <ImageButton
@@ -130,7 +132,7 @@
             android:layout_height="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/cosmetics"
-            app:layout_column="0"
+            app:layout_column="2"
             app:layout_row="0" />
 
         <ImageButton
@@ -138,7 +140,7 @@
             android:layout_height="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/fitness"
-            app:layout_column="0"
+            app:layout_column="3"
             app:layout_row="0" />
 
         <ImageButton
@@ -146,14 +148,14 @@
             android:layout_height="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/mother"
-            app:layout_column="0"
+            app:layout_column="1"
             app:layout_row="0" />
 
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerInside"
-            android:src="@drawable/health-care"
+            android:src="@drawable/hygienic_items"
             app:layout_column="0"
             app:layout_row="0" />
 
