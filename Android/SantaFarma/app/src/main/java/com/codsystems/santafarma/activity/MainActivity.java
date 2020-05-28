@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //Configuração da Nav Bottom
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.viewPage, new PedidosFragment()).commit();
+        fragmentTransaction.replace(R.id.viewPage, new HomeFragment()).commit();
 configurarNavBott();
     }
 

@@ -8,8 +8,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="0dp"
-        android:layout_height="331dp"
+        android:layout_width="425dp"
+        android:layout_height="227dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +22,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
         android:text="Ofertas"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -37,26 +37,26 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
         android:text="Departamentos"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         app:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/of_img1"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingHorizontal="8dp"
@@ -67,6 +67,7 @@
             app:layout_row="0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/of_img2"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingHorizontal="8dp"
@@ -77,6 +78,7 @@
             app:layout_row="0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/of_img3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingHorizontal="8dp"
@@ -87,6 +89,7 @@
             app:layout_row="0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/of_img4"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingHorizontal="8dp"
@@ -97,6 +100,7 @@
             app:layout_row="0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/of_img5"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingHorizontal="8dp"
@@ -109,7 +113,7 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="83dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
