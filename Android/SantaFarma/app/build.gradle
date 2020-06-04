@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:11.8.0'
     implementation 'com.google.firebase:firebase-storage:11.8.0'
     implementation 'com.google.android.material:material:1.1.0'
+
 // Dependencias da Bottom Navigation
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //noinspection GradleCompatible

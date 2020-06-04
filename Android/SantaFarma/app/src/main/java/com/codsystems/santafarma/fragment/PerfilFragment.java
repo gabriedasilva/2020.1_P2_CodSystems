@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,23 +29,40 @@ TextView textView;
     public PerfilFragment() {
         // Required empty public constructor
     }
-
+private ListView listView;
+    private String[] opcoes = {
+      "Úlimas Pedidos",
+            "MENU-1",
+            "MENU-2",
+            "MENU-3"
+    };
     Spinner spinner;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
         CircleImageView circleImageView = view.findViewById(R.id.imgPerfil);
-            circleImageView.setImageResource(R.drawable.padrao);
+        textView = view.findViewById(R.id.edit_perfil);
 
-textView = view.findViewById(R.id.edit_perfil);
+        textView.setOnClickListener(new View.OnClickListener() {//IDENTIFICAR O CLICAVEL
+            @Override
+            public void onClick(View v) {
+            abrirEditarPerfil();
+            }
+        });
+        listView = view.findViewById(R.id.opcoes_perfil);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                opcoes);
+        listView.setAdapter(adapter);
         return view;
     }
-    public void abrirTelaEditarPerfil(View view){
-        Intent intent = new Intent(getContext(), EditPerfilActivity.class);
-        startActivity(intent);
+public void abrirEditarPerfil(){
+    Intent intent = new Intent(getActivity(), EditPerfilActivity.class);
+    getActivity().startActivity(intent);
+}
 
-    }
 
 
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.config.ConfigFirebase;
+import com.codsystems.santafarma.helper.Base64Custom;
 import com.codsystems.santafarma.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -67,7 +68,7 @@ private FirebaseAuth auth;
             Toast.LENGTH_SHORT).show();
         }
     }
-    public void cadastarUsuario(Usuario u){
+    public void cadastarUsuario(final Usuario u){
 
         auth = ConfigFirebase.getFirebaseAutenticacao();
         auth.createUserWithEmailAndPassword(
@@ -76,9 +77,22 @@ private FirebaseAuth auth;
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
         if(task.isSuccessful()){
+
             Toast.makeText(CadastroActivity.this, "Usuário Cadastrado Com Sucesso!",
                     Toast.LENGTH_SHORT).show();
             finish();
+
+            try{
+
+                String  indentificadorUsuario;
+                indentificadorUsuario = Base64Custom.codificarBase64(u.getEmail());
+                u.setUid(indentificadorUsuario);
+
+u.salvarUsuario();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }else{
             String ex ="";
             try {
