@@ -1,5 +1,6 @@
 package com.codsystems.santafarma.fragment;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -59,19 +60,11 @@ public class ProdutosFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_produtos, container, false);
-        btn = view.findViewById(R.id.teste_btn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                consultaCole();
-                System.out.println("USOU O CLIQUE");
-            }
-        });
-
+consultaCole();
 
         return view;
     }
-
+String nome,preco,desc,categoria,dispon,classe;
     public void consultaCole() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Produtos")
@@ -80,9 +73,21 @@ public class ProdutosFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            ArrayList<Produto> produtos = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                System.out.println(document.getId() + "SOUT ->"+document.getData());
+                                System.out.println(document.getId());
+Produto p = new Produto();
+p.setNome(document.get("nome").toString());
+p.setCategoria(document.get("categoria").toString());
+p.setClasse(document.get("classe").toString());
+p.setPreco(document.get("preco").toString());
+p.setDesc(document.get("descricao").toString());
+p.setQtdeDisp(document.get("disp").toString());
+p.setIdProduto(document.getId());
+                produtos.add(p);
+                                System.out.println(
+                                        p.getNome()
+                                );
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
