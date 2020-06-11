@@ -44,6 +44,7 @@ private TextInputEditText c_email,c_senha;
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     abrirTelaPrincipal();
+                    MainActivity.sessao = auth.getUid();
                 }else{
                     String ex ="";
                     try {

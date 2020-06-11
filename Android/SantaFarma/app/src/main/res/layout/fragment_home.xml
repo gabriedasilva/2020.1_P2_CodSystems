@@ -116,7 +116,7 @@
             app:layout_row="0" />
     </androidx.gridlayout.widget.GridLayout>
 
-    <androidx.gridlayout.widget.GridLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/gridLayout2"
         android:layout_width="wrap_content"
         android:layout_height="83dp"
@@ -170,6 +170,6 @@
             app:layout_row="0" />
 
 
-    </androidx.gridlayout.widget.GridLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

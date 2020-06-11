@@ -1,49 +1,38 @@
 package com.codsystems.santafarma.model;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 public class Produto {
     private String nome;
     private String desc;
-    private String tipo;
+	private String categoria;
+	private int qtdeDisp;
+    private String classe;
     private Double preco;
-    private String codBar;
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDesc() {
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getQtdeDisp() {
+        return qtdeDisp;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public String getClasse() {
+        return classe;
     }
 
     public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public String getCodBar() {
-        return codBar;
-    }
-
-    public void setCodBar(String codBar) {
-        this.codBar = codBar;
-    }
 }

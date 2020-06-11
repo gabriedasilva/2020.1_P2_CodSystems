@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = ConfigFirebase.getFirebaseAutenticacao();
+
 //Configuração da Toolbar
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbarprincipal);
@@ -73,7 +74,7 @@ private void habilitarNavigation(BottomNavigationView botView){
             }
         });
 }
-
+static String sessao;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -104,6 +105,7 @@ private void habilitarNavigation(BottomNavigationView botView){
     public void deslogarUsuario() {
         try {
             auth.signOut();
+            sessao = "";
         } catch (Exception e) {
             e.printStackTrace();
         }

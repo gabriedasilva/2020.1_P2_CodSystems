@@ -77,18 +77,19 @@ private FirebaseAuth auth;
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
         if(task.isSuccessful()){
-
+            String usuario;
+            usuario = auth.getUid();
+            System.out.println("O USUARIO ===========>"+usuario);
             Toast.makeText(CadastroActivity.this, "Usuário Cadastrado Com Sucesso!",
                     Toast.LENGTH_SHORT).show();
             finish();
 
             try{
+u.setUid(auth.getUid());
+MainActivity.sessao = auth.getUid();
+u.salvarCloud(u);
 
-                String  indentificadorUsuario;
-                indentificadorUsuario = Base64Custom.codificarBase64(u.getEmail());
-                u.setUid(indentificadorUsuario);
 
-u.salvarUsuario();
             }catch (Exception e){
                 e.printStackTrace();
             }
