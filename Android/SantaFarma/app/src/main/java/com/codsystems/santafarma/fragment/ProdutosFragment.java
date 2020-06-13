@@ -74,8 +74,7 @@ boolean b = false;
 
        produtosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+           public void onItemClick(AdapterView<?> parent,View view, int position, long id) {
          if(cout == 0) {
              cout = cout +1;;
              String s = (String) produtosList.getItemAtPosition(position);
@@ -142,6 +141,7 @@ boolean b = false;
             gerarAdapterString(classes);
         }
     }
+
     public void spinnerSetItemCatego(){
         String[] spinnerItem = new String[] {"Escolha Uma Categoria",
                 "Beleza","Dermocosméticos" ,"Medicamentos","Mamãe e Bebê",
@@ -192,6 +192,7 @@ boolean b = false;
                     }
                 });
     }
+
     public void consultaGeral(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Produtos")
