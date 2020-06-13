@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
@@ -19,13 +20,13 @@ import com.codsystems.santafarma.fragment.HomeFragment;
 import com.codsystems.santafarma.fragment.OfertaFragment;
 import com.codsystems.santafarma.fragment.PedidosFragment;
 import com.codsystems.santafarma.fragment.PerfilFragment;
+import com.codsystems.santafarma.fragment.ProdutoFragment;
 import com.codsystems.santafarma.fragment.ProdutosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.viewPage, new HomeFragment()).commit();
 configurarNavBott();
+
     }
 
     private void configurarNavBott(){
@@ -79,10 +81,6 @@ static String sessao;
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
-
-
-
         return super.onCreateOptionsMenu(menu);
     }
 

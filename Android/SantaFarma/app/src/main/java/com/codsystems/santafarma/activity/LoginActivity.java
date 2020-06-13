@@ -88,7 +88,7 @@ private TextInputEditText c_email,c_senha;
         super.onStart();
         FirebaseUser user = auth.getCurrentUser();
         if (user != (null)) {
-
+MainActivity.sessao = auth.getUid();
             abrirTelaPrincipal();
         }
     }
