@@ -1,5 +1,6 @@
 package com.codsystems.santafarma.fragment;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
+import com.codsystems.santafarma.activity.ProdutoActivity;
 import com.codsystems.santafarma.model.Produto;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,10 +42,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
  */
 public class ProdutosFragment extends Fragment {
     ArrayList<Produto> listaDeProdutos = new ArrayList<>();
-ListView produtosList;
-Spinner categoriaSpinner;
-static String uidProd;
-boolean b = false;
+    ListView produtosList;
+    Spinner categoriaSpinner;
+    static Produto prodtela = new Produto();
+    static String uidProd;
+    boolean b = false;
     int cout;
     public ProdutosFragment() {
         // Required empty public constructor
@@ -53,42 +56,57 @@ boolean b = false;
                              Bundle savedInstanceState) {
 
 
-       View view = inflater.inflate(R.layout.fragment_produtos, container, false);
-       categoriaSpinner = view.findViewById(R.id.spinnerCategoria);
-       produtosList = view.findViewById(R.id.listaProdutos);
-       spinnerSetItemCatego();
-       categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               String s = categoriaSpinner.getSelectedItem().toString();
-               System.out.println("-----------"+s);
-               cout =0;
-               setClasseSpinner(s);
-           }
+        View view = inflater.inflate(R.layout.fragment_produtos, container, false);
+        categoriaSpinner = view.findViewById(R.id.spinnerCategoria);
+        produtosList = view.findViewById(R.id.listaProdutos);
+        spinnerSetItemCatego();
+        categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String s = categoriaSpinner.getSelectedItem().toString();
+                System.out.println("-----------"+s);
+                cout =0;
+                setClasseSpinner(s);
+            }
 
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-           }
-       });
+            }
+        });
 
-       produtosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent,View view, int position, long id) {
-         if(cout == 0) {
-             cout = cout +1;;
-             String s = (String) produtosList.getItemAtPosition(position);
-             consultaClasse(s);
-             System.out.println("STRING");
-         }else {
-             Produto p = (Produto)produtosList.getItemAtPosition(position);
-             System.out.println("OBJETO");
-         }
-           }
+        produtosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent,View view, int position, long id) {
+                if(cout == 0) {
+                    cout = cout +1;;
+                    String s = (String) produtosList.getItemAtPosition(position);
+                    consultaClasse(s);
+                    System.out.println("STRING");
+                }else {
+                    Produto p = (Produto)produtosList.getItemAtPosition(position);
+                    abrirPerfilProduto();
+                    System.out.println("OBJETO");
+                  passarInfo(p);
+                    System.out.println(p.getIdProduto());
+                }
+            }
 
-       });
+        });
 
         return view;
+    }
+
+    public void passarInfo(Produto p){
+ProdutoActivity.setProduto(p);
+    }
+
+
+
+
+    public void abrirPerfilProduto(){
+        Intent intent = new Intent(getActivity(),ProdutoActivity.class);
+        getActivity().startActivity(intent);
     }
 
     void gerarAdapterString(String[] classes){
@@ -106,37 +124,37 @@ boolean b = false;
 
         if(classe.equals("Beleza")){
             String[] classes = new String[]{
-"Tinturas","Maos e Pes"
+                    "Tinturas","Maos e Pes"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Dermocosméticos")){
             String[] classes = new String[]{
-"Rosto","Corpo"
+                    "Rosto","Corpo"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Medicamentos")){
             String[] classes = new String[]{
-"Eticos","Genericos","Similares"
+                    "Eticos","Genericos","Similares"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Mamãe e Bebê")){
             String[] classes = new String[]{
-"Fraldas","Para o Bebe","Para Mamae"
+                    "Fraldas","Para o Bebe","Para Mamae"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Vitaminas/Suplementos/Naturais")){
             String[] classes = new String[]{
-"Vitaminas","Suplementos","Naturais"
+                    "Vitaminas","Suplementos","Naturais"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Primeiros Socorros/Dor")){
             String[] classes = new String[]{
-"Primeiros Socorros","Dor"
+                    "Primeiros Socorros","Dor"
             };
             gerarAdapterString(classes);
         }else if(classe.equals("Higiene Pessoal")){
             String[] classes = new String[]{
-"Higiene Bucal","Desodorantes","Diversos"
+                    "Higiene Bucal","Desodorantes","Diversos"
             };
             gerarAdapterString(classes);
         }
@@ -220,9 +238,6 @@ boolean b = false;
                                 listaDeProdutos.add(p);
                                 adapter.notifyDataSetChanged();
                             }
-
-
-
                             produtosList.setAdapter(adapter);
                         }
 

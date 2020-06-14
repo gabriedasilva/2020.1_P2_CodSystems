@@ -10,6 +10,7 @@ public class Produto {
     private String preco;
 
 
+
     public String getIdProduto() {
         return idProduto;
     }

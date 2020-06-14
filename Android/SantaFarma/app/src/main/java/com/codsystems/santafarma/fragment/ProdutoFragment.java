@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.activity.CategoriasActivity;
+import com.codsystems.santafarma.model.Produto;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,37 +29,15 @@ public class ProdutoFragment extends Fragment {
         // Required empty public constructor
     }
 private ListView opcoes;
-
+Produto p = ProdutosFragment.prodtela;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String idProd = ProdutosFragment.uidProd;
         View view =  inflater.inflate(R.layout.fragment_produto, container, false);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Produtos")
-                .whereEqualTo("nome","Simeticona")
-                .get()
-
-        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                   @Override
-                                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                       if(task.isSuccessful()){
-                                           ArrayList<Object> categoria = new ArrayList<>();
-                                           for(QueryDocumentSnapshot document :task.getResult()){
-                                               System.out.println("OBJETOS RETORNADOS:"+document.getData());
-                                           }
-                                       }
-                                   }
-                               }
-        );
-
-
-
-
-        System.out.println();
-
-
-
+        System.out.println(""+p.getNome());
         return view;
+
     }
+
+
 }
