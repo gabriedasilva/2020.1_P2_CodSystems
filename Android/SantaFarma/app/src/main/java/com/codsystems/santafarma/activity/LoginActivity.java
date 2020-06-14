@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.config.ConfigFirebase;
+import com.codsystems.santafarma.model.Pedido;
 import com.codsystems.santafarma.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,8 @@ private TextInputEditText c_email,c_senha;
     }
 
     public void loginUsuario(Usuario u){
+        Pedido p = new Pedido();
+        p.setNomeCliente(u.getNome());
         auth.signInWithEmailAndPassword(
                 u.getEmail() ,u.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -69,6 +72,7 @@ private TextInputEditText c_email,c_senha;
 
         if(!t_email.isEmpty()){ //Verifica e mail e senha;
             if(!t_senha.isEmpty()){
+
                 Usuario u = new Usuario();
                 u.setEmail(t_email);
                 u.setSenha(t_senha);

@@ -7,15 +7,22 @@ import androidx.annotation.NonNull;
 
 import com.codsystems.santafarma.config.ConfigFirebase;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,11 +38,38 @@ public class Usuario {
     private String email;
     private String senha;
     private String telefone;
-    private List<String> endereco = new ArrayList<>();
+    private ArrayList<String> endereco = new ArrayList<>();
 
     public Usuario() {
     }
 
+
+public void buscaUsuario(String uid) {
+    final FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+    auth.getUid();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    final DocumentReference docRef = db.collection("Clientes").document(auth.getUid());
+    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        @Override
+        public void onSuccess(DocumentSnapshot documentSnapshot) {
+ Pedido pedi = new Pedido();
+         String nome;
+         ArrayList<String>endereco;
+        String idCliente;
+        idCliente = auth.getUid();
+         endereco = (ArrayList<String>) documentSnapshot.get("endereco");
+            nome = (String) documentSnapshot.get("nome");
+            pedi.setIdCliente(idCliente);
+      pedi.setEndereco(endereco);
+      pedi.setNomeCliente(nome);
+     pedi.salvarPedido(pedi);
+            System.out.println(nome);
+            System.out.println(endereco
+            );
+        }
+    });
+
+    }
 
 
 
@@ -49,10 +83,6 @@ public class Usuario {
         user.put("endereco", u.getEndereco());
         user.put("telefone", u.getTelefone());
 
-
-
-
-// Add a new document with a generated ID
         db.collection("Clientes")
                 .document(u.getUid())
                 .update(user)
@@ -87,7 +117,7 @@ public class Usuario {
         endereco.add(u.getPto_ref());
     }
 
-    public List<String> getEndereco() {
+    public ArrayList<String> getEndereco() {
         return endereco;
     }
 

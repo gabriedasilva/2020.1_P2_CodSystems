@@ -15,4 +15,5 @@
     <string name="numero_celular">Celular</string>
     <string name="salvar_usuario">Salvar</string>
     <string name="editarimagem">Editar Imagem</string>
+    <string name="action_settings">Settings</string>
 </resources>

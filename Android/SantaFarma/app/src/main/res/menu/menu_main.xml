@@ -15,5 +15,8 @@
     <item
         android:id="@+id/menu_sobre"
         android:title="Sobre" />
-
+<item
+    android:id="@+id/abrirChat"
+    android:title="Abrir Chat"
+    />
 </menu>

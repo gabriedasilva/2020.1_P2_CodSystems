@@ -7,20 +7,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
+import com.codsystems.santafarma.chat.ChatBubbleActivity;
 import com.codsystems.santafarma.config.ConfigFirebase;
 import com.codsystems.santafarma.fragment.HomeFragment;
 import com.codsystems.santafarma.fragment.OfertaFragment;
 import com.codsystems.santafarma.fragment.PedidosFragment;
 import com.codsystems.santafarma.fragment.PerfilFragment;
-import com.codsystems.santafarma.fragment.ProdutoFragment;
 import com.codsystems.santafarma.fragment.ProdutosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,7 +56,7 @@ private void habilitarNavigation(BottomNavigationView botView){
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (item.getItemId()){
-                    case(R.id.nav_carrinho):
+                    case(R.id.nav_cesta):
                      fragmentTransaction.replace(R.id.viewPage, new PedidosFragment()).commit();
                      return true;
                     case(R.id.nav_home):
@@ -96,10 +96,15 @@ static String sessao;
                 Toast.makeText(MainActivity.this, "Projeto Integrador 2020 CodSystems.",
                         Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.abrirChat:
+                abrirTelaChatl();
         }
         return super.onOptionsItemSelected(item);
     }
-
+    public void abrirTelaChatl(){
+        Intent intent = new Intent(this, ChatBubbleActivity.class);
+        startActivity(intent);
+    }
     public void deslogarUsuario() {
         try {
             auth.signOut();

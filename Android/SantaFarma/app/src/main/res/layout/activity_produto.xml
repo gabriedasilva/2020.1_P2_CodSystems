@@ -49,10 +49,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="227dp"
+        android:layout_marginRight="227dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/percoLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
@@ -80,10 +82,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="274dp"
+        android:layout_marginRight="274dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/qtdeDispLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
 
@@ -115,6 +119,8 @@
         android:layout_marginTop="32dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/descricaoLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/percoLayout">
 
@@ -136,7 +142,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addCesta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -161,25 +167,33 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <SeekBar
-        android:id="@+id/seekQtd"
-        android:layout_width="158dp"
-        android:layout_height="27dp"
-        app:layout_constraintBottom_toBottomOf="@+id/qtdeDispLayout"
-        app:layout_constraintEnd_toStartOf="@+id/qtdText"
-        app:layout_constraintStart_toEndOf="@+id/qtdeDispLayout"
-        app:layout_constraintTop_toTopOf="@+id/qtdeDispLayout" />
-
-    <TextView
-        android:id="@+id/qtdText"
+    <Button
+        android:id="@+id/btn_addCesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/seekQtd"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Adicionar à Cesta"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/seekQtd" />
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLayout" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_addCesta"
+        app:layout_constraintEnd_toStartOf="@+id/btn_addCesta"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_addCesta" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

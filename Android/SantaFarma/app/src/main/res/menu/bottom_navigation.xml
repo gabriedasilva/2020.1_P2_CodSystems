@@ -17,9 +17,9 @@
         android:title="Produtos" />
 
     <item
-        android:id="@+id/nav_carrinho"
+        android:id="@+id/nav_cesta"
         android:icon="@drawable/ic_cesta"
-        android:title="Carrinho" />
+        android:title="Cesta" />
 
 
     <item

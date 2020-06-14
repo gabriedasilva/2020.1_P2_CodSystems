@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ProdutoActivity"></activity>
+        <activity android:name=".activity.ProdutoActivity" />
         <activity android:name=".activity.CategoriasActivity" />
         <activity android:name=".activity.EditPerfilActivity" />
         <activity android:name=".activity.CadastroActivity" />
+        <activity android:name=".chat.ChatBubbleActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
