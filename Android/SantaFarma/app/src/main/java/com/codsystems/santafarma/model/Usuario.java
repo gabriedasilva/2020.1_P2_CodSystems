@@ -43,36 +43,33 @@ public class Usuario {
     public Usuario() {
     }
 
+    public void buscaUsuario(String uid) {
 
-public void buscaUsuario(String uid) {
-    final FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
-    auth.getUid();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    final DocumentReference docRef = db.collection("Clientes").document(auth.getUid());
-    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-        @Override
-        public void onSuccess(DocumentSnapshot documentSnapshot) {
- Pedido pedi = new Pedido();
-         String nome;
-         ArrayList<String>endereco;
-        String idCliente;
-        idCliente = auth.getUid();
-         endereco = (ArrayList<String>) documentSnapshot.get("endereco");
-            nome = (String) documentSnapshot.get("nome");
-            pedi.setIdCliente(idCliente);
-      pedi.setEndereco(endereco);
-      pedi.setNomeCliente(nome);
-     pedi.salvarPedido(pedi);
-            System.out.println(nome);
-            System.out.println(endereco
-            );
-        }
-    });
+        final FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+        auth.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference docRef = db.collection("Clientes").document(auth.getUid());
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Pedido pedi = new Pedido();
+                String nome;
+                ArrayList<String>endereco;
+                String idCliente;
+                idCliente = auth.getUid();
+                endereco = (ArrayList<String>) documentSnapshot.get("endereco");
+                nome = (String) documentSnapshot.get("nome");
+                pedi.setIdCliente(idCliente);
+                pedi.setEndereco(endereco);
+                pedi.setNomeCliente(nome);
+                pedi.salvarPedido(pedi);
+                System.out.println(nome);
+                System.out.println(endereco
+                );
+            }
+        });
 
     }
-
-
-
     public void updateUsuario(Usuario u){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Create a new user with a first and last name
@@ -107,7 +104,6 @@ public void buscaUsuario(String uid) {
                 .set(user)
         ;
     }
-
     public void setEndereco(Usuario u) {
         endereco.add(u.getCidade());
         endereco.add(u.getBairro());
@@ -116,50 +112,47 @@ public void buscaUsuario(String uid) {
         endereco.add(u.getComplemento());
         endereco.add(u.getPto_ref());
     }
-
     public ArrayList<String> getEndereco() {
         return endereco;
     }
-
     public String getUid() {
         return uid;
     }
-
     public void setUid(String uid) {
         this.uid = uid;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getSenha() {
         return senha;
     }
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+
+
+
+
+
+
+
 
     // INICIO ENDERECO
     public String getCidade() {
