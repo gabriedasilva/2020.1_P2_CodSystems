@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -27,6 +28,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Document;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -65,6 +71,7 @@ String nomeCLi;
         chatText.setOnKeyListener(new OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
                     return sendChatMessage();
                 }
                 return false;
@@ -73,6 +80,7 @@ String nomeCLi;
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                textCloud();
                 sendChatMessage();
             }
         });
@@ -91,25 +99,45 @@ String nomeCLi;
     }
 
     private boolean sendChatMessage(){
+        side = false;
         chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
-        textCloud();
+
+
         chatText.setText("");
-        side = side;
+        side = true;
 
         return true;
     }
 
-
-public boolean receberMessage(){
-        chatArrayAdapter.add(new ChatMessage(side,chatText.getText().toString()));
-        chatText.setText("");
-        side = !side;
-        return true;
-}
 public void consultaMensagem(){
+        FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Atendimento");
-}
+ db.collection("Clientes").document(auth.getCurrentUser().getUid())
+            .collection("Chat").orderBy("timeStamp", Query.Direction.DESCENDING) //.document().getParent()
+.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
+     @Override
+     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+         if (task.isSuccessful()) {
+             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                 String sp = (String) documentSnapshot.getData().get("Remetente");
+                 if(sp.equalsIgnoreCase("SP")) {
+                     String message = (String) documentSnapshot.getData().get("mensagem");
+                     System.out.println("ELE mandou:"+message);
+                    chatArrayAdapter.add(new ChatMessage(true, message));
+                    chatArrayAdapter.clear();
+                 }else if(!sp.equalsIgnoreCase("SP")){
+                     String message2 = (String) documentSnapshot.getData().get("mensagem");
+                     chatArrayAdapter.add(new ChatMessage(false,message2));
+                     System.out.println("EU MANDEI"+message2);
+                     chatArrayAdapter.clear();
+                 }
+
+             }
+         }
+     }
+ });
+ }
+
 
     String s = MainActivity.sessao;
     public void setAtendimentoCLoud(){
@@ -151,6 +179,7 @@ public void consultaMensagem(){
                            System.out.println("Nome do CLie"+nomeCLi);
                            setAtendimentoCLoud();
                        }
+
                    }
                });
        return nomeCLi;
@@ -159,7 +188,7 @@ public void consultaMensagem(){
     public void textCloud(){
         Timestamp time = new Timestamp(System.currentTimeMillis());
         long timeST = -1*(time.getTime());
-        String s = chatText.getText().toString();
+        final String s = chatText.getText().toString();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
         idCliente = auth.getCurrentUser().getUid();
@@ -172,11 +201,12 @@ public void consultaMensagem(){
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        System.out.println("ENVIOU"+s);
 
-                        System.out.println(  docRef.get());
 
                     }
                 });
+
 
     }
 

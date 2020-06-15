@@ -1,7 +1,7 @@
 package com.codsystems.santafarma.chat;
 
 public class ChatMessage {
-	public boolean left;
+	public boolean left = false;
 	public String message;
 
 
