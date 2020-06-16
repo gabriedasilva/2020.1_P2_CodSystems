@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.activity.MainActivity;
@@ -27,7 +28,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -100,9 +103,6 @@ String nomeCLi;
 
     private boolean sendChatMessage(){
         side = false;
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
-
-
         chatText.setText("");
         side = true;
 
@@ -111,40 +111,33 @@ String nomeCLi;
 
 public void consultaMensagem(){
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.addSnapshotsInSyncListener(new Runnable() {
-            @Override
-            public void run() {
                 FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 db.collection("Clientes").document(auth.getCurrentUser().getUid())
                         .collection("Chat").orderBy("timeStamp", Query.Direction.DESCENDING) //.document().getParent()
-                        .get()
+                      .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                          @Override
+                          public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                         if(e != null){
 
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                        String sp = (String) documentSnapshot.getData().get("Remetente");
-                                        if(sp.equalsIgnoreCase("SP")) {
-                                            String message = (String) documentSnapshot.getData().get("mensagem");
+                         }else{
+                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                String sp = (String) documentSnapshot.getData().get("Remetente");
+                                if(sp.equalsIgnoreCase("SP")) {
+                                    String message = (String) documentSnapshot.getData().get("mensagem");
+                                    chatArrayAdapter.add(new ChatMessage(true, message));
+                                    chatArrayAdapter.clear();
+                                }else if(!sp.equalsIgnoreCase("SP")){
+                                    String message2 = (String) documentSnapshot.getData().get("mensagem");
+                                    chatArrayAdapter.add(new ChatMessage(false,message2));
 
-                                            chatArrayAdapter.add(new ChatMessage(true, message));
-                                            chatArrayAdapter.clear();
-                                        }else if(!sp.equalsIgnoreCase("SP")){
-                                            String message2 = (String) documentSnapshot.getData().get("mensagem");
-                                            chatArrayAdapter.add(new ChatMessage(false,message2));
-
-                                            chatArrayAdapter.clear();
-                                        }
-
-                                    }
+                                    chatArrayAdapter.clear();
                                 }
                             }
-                        });
-            }
-        });
+                         }
+
+                          }
+                      });
 
  }
 
