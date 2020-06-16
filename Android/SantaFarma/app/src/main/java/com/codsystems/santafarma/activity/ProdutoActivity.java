@@ -33,6 +33,8 @@ Button btnPedido;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
+        Pedido p = new Pedido();
+
 setInfo();
         int qt;
         qt =   Integer.valueOf(produto.getQtdeDisp());
@@ -47,7 +49,8 @@ setInfo();
         btnPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCesta(prod);
+
+                addCesta();
             }
         });
     }
@@ -68,17 +71,24 @@ setInfo();
 
     }
 
-    public void addCesta(Produto p){
-        FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
-               Pedido pedido = new Pedido();
-               Usuario u = new Usuario();
-               u.buscaUsuario(auth.getUid());
-        ArrayList<Produto> produtos = new ArrayList<>();
-        produtos.add(p);
-        System.out.println("-----"+produtos);
-        pedido.setProdutos(produtos);
-        pedido.setEndereco(pedido.getEndereco());
-        pedido.setNomeCliente(pedido.getNomeCliente());
-    }
+    public void addCesta() {
+        Produto p = prod;
+        Pedido pedido = new Pedido();
+        pedido.setNomeProduto(p.getNome());
+        pedido.setPrecoProduto(p.getPreco());
 
+
+
+    System.out.println(pedido.getNomeCliente());
+    System.out.println(pedido.getEndereco().toString());
+    System.out.println(pedido);
+
+
+        pedido.salvarPedido(pedido);
+        }
+
+
+    public void addCloudCesta(){
+
+    }
 }

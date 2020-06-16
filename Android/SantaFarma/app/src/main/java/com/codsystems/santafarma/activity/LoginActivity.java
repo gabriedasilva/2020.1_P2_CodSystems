@@ -38,8 +38,6 @@ private TextInputEditText c_email,c_senha;
     }
 
     public void loginUsuario(Usuario u){
-        Pedido p = new Pedido();
-        p.setNomeCliente(u.getNome());
         auth.signInWithEmailAndPassword(
                 u.getEmail() ,u.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

@@ -1,71 +1,89 @@
 package com.codsystems.santafarma.model;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
+import com.codsystems.santafarma.config.ConfigFirebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Pedido {
-    String idCliente;
 String nomeCliente;
-ArrayList<Produto> produtos = new ArrayList<>();
+String nomeProduto;
+String precoProduto;
+String precoTotal;
 ArrayList<String> endereco = new ArrayList<>();
 
-    void salvarPedido(Pedido ped){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final Map<String, Object> pedido = new HashMap<>();
-        pedido.put("endereco",ped.getEndereco());
-        pedido.put("produtos",ped.getProdutos());
-        pedido.put("nome",ped.getNomeCliente());
-        pedido.put("idCliente",ped.getIdCliente());
 
-        db.collection("Cesta")
-                .document(ped.getIdCliente())
-                .set(pedido)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println(pedido);
-                    }
-                });
+  public  void salvarPedido(Pedido ped) {
+      FirebaseFirestore db = FirebaseFirestore.getInstance();
+      Map<String, Object> pedido = new HashMap<>();
+      pedido.put("nomeProduto", ped.getNomeProduto());
+      pedido.put("precoProduto",ped.getPrecoProduto());
 
-    }
+    db.collection("Clientes").document(ped.getIdCliente())
+            .collection("Cesta")
+              .document()
+     .set(pedido)
+              .addOnCompleteListener(new OnCompleteListener<Void>() {
+        @Override
+        public void onComplete(@NonNull Task<Void> task) {
+
+        }
+    });
+}
+public void setPedido(){}
 
     public String getIdCliente() {
+        FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+        String idCliente = auth.getCurrentUser().getUid().toString();
         return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(ArrayList<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
     public ArrayList<String> getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(ArrayList<String> endereco) {
-        this.endereco = endereco;
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public String getPrecoProduto() {
+        return precoProduto;
+    }
+
+    public void setPrecoProduto(String precoProduto) {
+        this.precoProduto = precoProduto;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return nomeProduto;
+    }
+
+    public String getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(String precoTotal) {
+        this.precoTotal = precoTotal;
     }
 }
