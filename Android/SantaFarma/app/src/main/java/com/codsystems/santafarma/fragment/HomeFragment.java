@@ -1,23 +1,13 @@
 package com.codsystems.santafarma.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
+
+import androidx.fragment.app.Fragment;
 
 import com.codsystems.santafarma.R;
-import com.codsystems.santafarma.model.BuscasCloud;
 
 /**
  * A simple {@link Fragment} subclass.

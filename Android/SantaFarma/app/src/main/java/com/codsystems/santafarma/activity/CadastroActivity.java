@@ -1,15 +1,14 @@
 package com.codsystems.santafarma.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.config.ConfigFirebase;
-import com.codsystems.santafarma.helper.Base64Custom;
 import com.codsystems.santafarma.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

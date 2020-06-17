@@ -1,17 +1,10 @@
 package com.codsystems.santafarma.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.codsystems.santafarma.R;
-import com.codsystems.santafarma.model.Produto;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.codsystems.santafarma.R;
 
 public class CategoriasActivity extends AppCompatActivity {
 

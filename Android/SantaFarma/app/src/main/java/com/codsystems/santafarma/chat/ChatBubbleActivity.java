@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -19,10 +18,7 @@ import androidx.annotation.Nullable;
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.activity.MainActivity;
 import com.codsystems.santafarma.config.ConfigFirebase;
-import com.codsystems.santafarma.model.Atendimento;
-import com.codsystems.santafarma.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,11 +31,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Document;
-
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +44,7 @@ public class ChatBubbleActivity extends Activity {
     private Button buttonSend;
     Intent intent;
     private boolean side = false;
-String nomeCLi;
+    String nomeCLi;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,40 +101,41 @@ String nomeCLi;
         return true;
     }
 
-public void consultaMensagem(){
+    public void consultaMensagem(){
 
-                FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("Clientes").document(auth.getCurrentUser().getUid())
-                        .collection("Chat").orderBy("timeStamp", Query.Direction.DESCENDING) //.document().getParent()
-                      .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                          @Override
-                          public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                         if(e != null){
+        FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Clientes").document(auth.getCurrentUser().getUid())
+                .collection("Chat").orderBy("timeStamp", Query.Direction.DESCENDING) //.document().getParent()
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if(e != null){
 
-                         }else{
+                        }else{
                             for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                                 String sp = (String) documentSnapshot.getData().get("Remetente");
                                 if(sp.equalsIgnoreCase("SP")) {
+                                    chatArrayAdapter.clear();
                                     String message = (String) documentSnapshot.getData().get("mensagem");
                                     chatArrayAdapter.add(new ChatMessage(true, message));
                                     chatArrayAdapter.clear();
                                 }else if(!sp.equalsIgnoreCase("SP")){
+                                    chatArrayAdapter.clear();
                                     String message2 = (String) documentSnapshot.getData().get("mensagem");
                                     chatArrayAdapter.add(new ChatMessage(false,message2));
-
                                     chatArrayAdapter.clear();
                                 }
                             }
-                         }
+                        }
 
-                          }
-                      });
+                    }
+                });
 
- }
-
+    }
 
     String s = MainActivity.sessao;
+
     public void setAtendimentoCLoud(){
         FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
         String uidCliente = auth.getCurrentUser().getUid();
@@ -167,25 +160,25 @@ public void consultaMensagem(){
                 }
             });
         }
-        }
+    }
 
     public String buscarUsuario(String s){
-       FirebaseFirestore db = FirebaseFirestore.getInstance();
-       db.collection("Clientes")
-               .document(s)
-               .get()
-               .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                       if(task.isSuccessful()){
-                       nomeCLi = task.getResult().getData().get("nome").toString();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Clientes")
+                .document(s)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            nomeCLi = task.getResult().getData().get("nome").toString();
 
-                           setAtendimentoCLoud();
-                       }
+                            setAtendimentoCLoud();
+                        }
 
-                   }
-               });
-       return nomeCLi;
+                    }
+                });
+        return nomeCLi;
     }
 
     public void textCloud(){

@@ -1,12 +1,5 @@
 package com.codsystems.santafarma.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +7,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.chat.ChatBubbleActivity;
 import com.codsystems.santafarma.config.ConfigFirebase;
 import com.codsystems.santafarma.fragment.HomeFragment;
-import com.codsystems.santafarma.fragment.OfertaFragment;
+import com.codsystems.santafarma.fragment.PromocaoFragment;
 import com.codsystems.santafarma.fragment.PedidosFragment;
 import com.codsystems.santafarma.fragment.PerfilFragment;
 import com.codsystems.santafarma.fragment.ProdutosFragment;
@@ -64,7 +63,7 @@ private void habilitarNavigation(BottomNavigationView botView){
                         fragmentTransaction.replace(R.id.viewPage, new HomeFragment()).commit();
                         return true;
                     case(R.id.nav_oferta):
-                        fragmentTransaction.replace(R.id.viewPage, new OfertaFragment()).commit();
+                        fragmentTransaction.replace(R.id.viewPage, new PromocaoFragment()).commit();
                         return true;
                     case(R.id.nav_produtos):
                         fragmentTransaction.replace(R.id.viewPage, new ProdutosFragment()).commit();

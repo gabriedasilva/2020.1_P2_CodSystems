@@ -1,27 +1,16 @@
 package com.codsystems.santafarma.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.codsystems.santafarma.R;
-import com.codsystems.santafarma.config.ConfigFirebase;
-import com.codsystems.santafarma.fragment.ProdutosFragment;
 import com.codsystems.santafarma.model.Pedido;
 import com.codsystems.santafarma.model.Produto;
-import com.codsystems.santafarma.model.Usuario;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProdutoActivity extends AppCompatActivity {
     private static Produto prod;

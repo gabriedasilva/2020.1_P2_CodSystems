@@ -1,34 +1,18 @@
 package com.codsystems.santafarma.model;
 
-import android.nfc.Tag;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.codsystems.santafarma.config.ConfigFirebase;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
-import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class Usuario {
 
@@ -45,7 +29,6 @@ public class Usuario {
 
 
 
-
     public void updateUsuario(Usuario u){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Create a new user with a first and last name
@@ -58,7 +41,7 @@ public class Usuario {
 
         db.collection("Clientes")
                 .document(u.getUid())
-                .update(user)
+                .set(user)
         ;
     }
     public void salvarCloud(Usuario u){
