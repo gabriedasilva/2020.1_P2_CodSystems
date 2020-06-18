@@ -46,7 +46,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/digite_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            android:textColorLink="@color/colorWhite" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +74,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/digite_senha"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/colorWhite"
+            android:textColorHighlight="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            android:textColorLink="@color/colorWhite" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

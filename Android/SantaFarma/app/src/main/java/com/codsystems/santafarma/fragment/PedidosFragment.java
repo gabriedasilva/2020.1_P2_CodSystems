@@ -145,6 +145,19 @@ public class PedidosFragment extends Fragment {
                 });
 
     }
+
+    public void limparTudo(){
+
+        ArrayAdapter<Pedido> adapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                listaPedido );
+        listaPedido.clear();
+
+        adapter.notifyDataSetChanged();
+        txTotal.setText("0,00");
+    }
     public void buscaUsuario(){
         FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
         String uid = auth.getCurrentUser().getUid();
@@ -210,6 +223,7 @@ public void apagarPedidos(){
                  db.collection("Clientes").document(uid).collection("Cesta").document(s).delete();
              }
                 buscarPedidos(uid);
+             limparTudo();
             }
         }
     });
