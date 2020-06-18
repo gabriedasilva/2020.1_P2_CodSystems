@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codsystems.santafarma.R;
 import com.codsystems.santafarma.config.ConfigFirebase;
@@ -88,7 +89,8 @@ String nomeProd,descProd,precoProd;
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
+                        Toast.makeText(OfertaActivity.this, "Pedido adicionado a Cesta", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
     }

@@ -8,12 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.codsystems.santafarma.R;
+import com.codsystems.santafarma.activity.MainActivity;
 import com.codsystems.santafarma.config.ConfigFirebase;
 import com.codsystems.santafarma.model.Pedido;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.math.BigDecimal;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,6 +72,7 @@ public class PedidosFragment extends Fragment {
             public void onClick(View v) {
 
                 enviarPedidoCloud();
+
             }
         });
         // Inflate the layout for this fragment
@@ -125,10 +130,14 @@ public class PedidosFragment extends Fragment {
                                 listaPedido.add(p);
                                 adapter.notifyDataSetChanged();
                             }
-                            buscaUsuario();
                             total = String.valueOf(precoTotalPedido).replace(".",",");
-                            txTotal.setText("RS"+total);
-                            System.out.println("PRECO TOTAL:"+precoTotalPedido);
+                            BigDecimal b1 = new BigDecimal(precoTotalPedido);
+                            buscaUsuario();
+                            String s = String.valueOf(b1.setScale(2,2));
+                           total = s.replace(".",",");
+                            txTotal.setText("RS "+s);
+                            System.out.println("PRECO TOTAL:"+s);
+                            pedidosList.deferNotifyDataSetChanged();
                             pedidosList.setAdapter(adapter);
                         }
 
@@ -161,8 +170,8 @@ setNomeUsuario(nomeCiente);
     }
     public void enviarPedidoCloud(){
 
-        FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
-        String uid = auth.getCurrentUser().getUid();
+        final FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+        final String uid = auth.getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> pedidoC = new HashMap<>();
         pedidoC.put("total",total);
@@ -172,16 +181,38 @@ setNomeUsuario(nomeCiente);
         pedidoC.put("telefone",getTelefone());
         pedidoC.put("endereco",getEnderecoUsuario());
         pedidoC.put("situacao","0");
-
-
         db.collection("Pedidos").document()
                 .set(pedidoC)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getActivity(), "Pedido enviado com Sucesso! Agradecemos pela Preferência.", Toast.LENGTH_SHORT).show();
+                        apagarPedidos();
+
 
                     }
                 });
+
+
+    }
+public void apagarPedidos(){
+    FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
+    final String uid = auth.getCurrentUser().getUid();
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    db.collection("Clientes").document(uid).collection("Cesta").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        @Override
+        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+            if(e != null) {
+            }else{
+             for (QueryDocumentSnapshot doc :queryDocumentSnapshots){
+                 String s = doc.getId();
+                 System.out.println("ID DO P E D  I D O"+s);
+                 db.collection("Clientes").document(uid).collection("Cesta").document(s).delete();
+             }
+                buscarPedidos(uid);
+            }
+        }
+    });
 
     }
 

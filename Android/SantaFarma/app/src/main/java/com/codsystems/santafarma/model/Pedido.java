@@ -1,7 +1,11 @@
 package com.codsystems.santafarma.model;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
+import com.codsystems.santafarma.activity.ProdutoActivity;
 import com.codsystems.santafarma.config.ConfigFirebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +26,7 @@ ArrayList<String> endereco = new ArrayList<>();
 
   public  void salvarPedido(Pedido ped) {
       FirebaseFirestore db = FirebaseFirestore.getInstance();
-      Map<String, Object> pedido = new HashMap<>();
+      final Map<String, Object> pedido = new HashMap<>();
       pedido.put("nomeProduto", ped.getNomeProduto());
       pedido.put("precoProduto",ped.getPrecoProduto());
 

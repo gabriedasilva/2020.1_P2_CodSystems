@@ -55,8 +55,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         c_ptoEditPerf = findViewById(R.id.ptoRef_editPerfil);
         c_telefoneEditPerf = findViewById(R.id.tel_editPerfil);
         c_nomeEditPerf = findViewById(R.id.nome_editPerfil);
-        Toast.makeText(this, "TA LOGADO:"+MainActivity.sessao, Toast.LENGTH_SHORT).show();
-        System.out.println("--------------------->"+MainActivity.sessao);
+        System.out.println(MainActivity.sessao);
         Button btn = findViewById(R.id.btnsalvar_editPerfil);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,6 +187,7 @@ public class EditPerfilActivity extends AppCompatActivity {
         u.setUid(MainActivity.sessao);
         u.updateUsuario(u);
         Toast.makeText(this, "Usuario Atualizado Com Sucesso!", Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 

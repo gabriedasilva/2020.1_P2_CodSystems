@@ -76,6 +76,7 @@ public class ChatBubbleActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 textCloud();
+                consultaMensagem();
                 sendChatMessage();
             }
         });
@@ -102,7 +103,6 @@ public class ChatBubbleActivity extends Activity {
     }
 
     public void consultaMensagem(){
-
         FirebaseAuth auth = ConfigFirebase.getFirebaseAutenticacao();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Clientes").document(auth.getCurrentUser().getUid())
@@ -110,6 +110,7 @@ public class ChatBubbleActivity extends Activity {
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        chatArrayAdapter.clear();
                         if(e != null){
 
                         }else{
@@ -198,8 +199,6 @@ public class ChatBubbleActivity extends Activity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         System.out.println("ENVIOU"+s);
-
-
                     }
                 });
 

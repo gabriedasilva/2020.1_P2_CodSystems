@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -74,6 +75,8 @@ setInfo();
 
 
         pedido.salvarPedido(pedido);
+        Toast.makeText(getApplicationContext(), "Pedido adicionado a Cesta", Toast.LENGTH_SHORT).show();
+        finish();
         }
 
 

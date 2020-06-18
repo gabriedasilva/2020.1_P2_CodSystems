@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/abrirChat"
+        android:icon="@android:drawable/sym_action_chat"
+        android:title="Abrir Chat"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_notificar"
         android:icon="@drawable/ic_notificacoes"
         android:title="Notificações"
@@ -15,8 +20,5 @@
     <item
         android:id="@+id/menu_sobre"
         android:title="Sobre" />
-<item
-    android:id="@+id/abrirChat"
-    android:title="Abrir Chat"
-    />
+
 </menu>
